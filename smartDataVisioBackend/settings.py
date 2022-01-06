@@ -31,15 +31,26 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    # Django Core
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # Django Rest Framework
+    'rest_framework',
+    'corsheaders',
+
+    # Local App
+    'Security.apps.SecurityConfig'
 ]
 
+CORS_ORIGIN_ALLOW_ALL = True
+
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -69,14 +80,20 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'smartDataVisioBackend.wsgi.application'
 
+# Users & Authentication
+AUTH_USER_MODEL = 'Security.User'
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'djongo',
+        'CLIENT': {
+            "host": "mongodb+srv://smart-dba2021:2v2VaM8dNfmBb9Gg@cluster0.qitrz.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+            "name": "data_visio_db",
+            "authMechanism":"SCRAM-SHA-1"
+        }
     }
 }
 

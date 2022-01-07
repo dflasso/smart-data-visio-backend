@@ -1,28 +1,27 @@
 from rest_framework import serializers
 
-class CreateResourceRequest(serializers.Serializer):
+class ResourceSerializer(serializers.Serializer):
+    id = serializers.CharField( required=False )
+
     page_name = serializers.CharField(
         max_length=100, 
-        min_length=1, 
-        allow_blank=False)
+        min_length=1)
     
     tab_name = serializers.CharField(
         max_length=100, 
-        min_length=1, 
-        allow_blank=False)
+        min_length=1)
     
-    url = serializers.URLField(
+    url = serializers.CharField(
         max_length=200, 
-        min_length=1, 
-        allow_blank=False )
+        min_length=1,
+        required=False )
     
     icon = serializers.CharField(
         max_length=100, 
-        min_length=None, 
-        allow_blank=True)
+        min_length=None)
 
     
     id_resource_parent = serializers.CharField(
         max_length=100, 
         min_length=None, 
-        allow_blank=True )
+        required=False )

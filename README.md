@@ -124,3 +124,7 @@ python3.9 manage.py createsuperuser
 Usuario creado
 email: dany@gmail.com
 dl.12345
+
+**paciente**
+user: paciente1
+pss: usertest12345

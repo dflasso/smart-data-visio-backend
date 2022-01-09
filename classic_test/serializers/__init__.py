@@ -1,0 +1,2 @@
+from .lang_ishihara_serializer import LangIshiharaSerializer
+from .lang_ishihara_results_serializer import LangIshiharaResultSerializer

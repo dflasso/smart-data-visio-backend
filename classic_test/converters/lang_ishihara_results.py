@@ -16,12 +16,24 @@ from analytics.test_lang import analyze_many_answers as lang_analyze_answers
 
 def lang_results_from_serializer_to_model(results_as_dict):
     """Try to converter from request to data ready to save"""
+    return _from_serializer_to_model(results_as_dict=results_as_dict, 
+                                    type_test=TypeClassicTest.LANG, 
+                                    code_error=TypeAppError.CONVERT_RESULTS_LANG_FROM_SERIALIZER_TO_MODEL_NOT_IS_LANG.value)
+
+def ishihara_results_from_serializer_to_model(results_as_dict):
+    """Try to converter from request to data ready to save"""
+    return _from_serializer_to_model(results_as_dict=results_as_dict, 
+                                    type_test=TypeClassicTest.ISHIHARA, 
+                                    code_error=TypeAppError.CONVERT_RESULTS_LANG_FROM_SERIALIZER_TO_MODEL_NOT_IS_ISHIHARA.value)
+
+def _from_serializer_to_model(results_as_dict, type_test, code_error):
+    """Try to converter from request to data ready to save"""
 
     _check_type_param(results_as_dict)
     
-    _check_type_test(type_test=TypeClassicTest.LANG, 
+    _check_type_test(type_test=type_test, 
                      results_as_dict=results_as_dict, 
-                     code_error=TypeAppError.CONVERT_RESULTS_LANG_FROM_SERIALIZER_TO_MODEL_NOT_IS_LANG.value)
+                     code_error=code_error)
     
     results = []
     for card_test in results_as_dict['results']:
@@ -36,7 +48,7 @@ def lang_results_from_serializer_to_model(results_as_dict):
     
     return {
         "id_ticket_patient_tests": results_as_dict["id_ticket_patient_tests"],
-        "type_test": TypeClassicTest.LANG.value,
+        "type_test": type_test.value,
         "observations": results_as_dict['observations'],
         "started_at": results_as_dict['started_at'],
         "finished_at": results_as_dict['finished_at'],

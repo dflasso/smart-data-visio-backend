@@ -38,7 +38,7 @@ def _from_serializer_to_model(results_as_dict, type_test, code_error):
     results = []
     for card_test in results_as_dict['results']:
         """Find corrects answer of the test applied"""
-        card_test_lang = LangIshiharaDao.find_test_by_id(card_test['id_test'])
+        card_test_lang = LangIshiharaDao.find_test_by_id_and_type(card_test['id_test'], type_test.value)
         items_card = lang_analyze_answers(card_test_lang.items_card, card_test['items_card'])
         result = _build_dict_results_detail(id_test=card_test['id_test'], 
                                    card_test_name_english=card_test_lang.name_test_english,
@@ -47,7 +47,7 @@ def _from_serializer_to_model(results_as_dict, type_test, code_error):
         results.append(result)
     
     return {
-        "id_ticket_patient_tests": results_as_dict["id_ticket_patient_tests"],
+        "ticket_patient_tests": results_as_dict["ticket_patient_tests"],
         "type_test": type_test.value,
         "observations": results_as_dict['observations'],
         "started_at": results_as_dict['started_at'],
@@ -67,9 +67,9 @@ def _check_type_param(results_as_dict):
 
 def _check_type_test(type_test, results_as_dict, code_error):
     if results_as_dict['type_test'] != type_test.value:
-        """Check if type of the test applied is LANG"""
-        raise BusinessRuleException(message_english="Type of the test will must be 'LANG'",
-                                    message_spanish="El tipo de prueba deberia ser 'LANG'",
+        """Check if type of the test applied is correct"""
+        raise BusinessRuleException(message_english=f"Type of the test will must be {type_test.name}",
+                                    message_spanish=f"El tipo de prueba deberia ser {type_test.name}",
                                     code= code_error,
                                     debug_message=f"Please review field of request 'type_test' is {results_as_dict['type_test']}",
                                     status=status.HTTP_400_BAD_REQUEST)

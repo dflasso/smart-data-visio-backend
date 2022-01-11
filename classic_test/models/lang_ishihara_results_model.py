@@ -1,4 +1,5 @@
 """Modelo enfocao a registrar los datos de los resultados de ishihara y Lang"""
+import uuid
 from djongo import models
 from django.contrib.postgres.fields import ArrayField
 
@@ -27,7 +28,8 @@ class ResultsDetail(models.Model):
         managed = False
 
 class LangIshiharaResult(models.Model):
-    id_ticket_patient_tests = models.CharField(max_length=20)
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    ticket_patient_tests = models.CharField(max_length=20)
     type_test = models.CharField(max_length=10)
     observations = models.CharField(max_length=500, blank=True)
     started_at = models.DateTimeField()
@@ -36,3 +38,5 @@ class LangIshiharaResult(models.Model):
     results = models.ArrayField(
         model_container= ResultsDetail
     )
+
+    objects = models.DjongoManager()

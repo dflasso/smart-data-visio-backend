@@ -43,15 +43,15 @@ def _from_serializer_to_model(results_as_dict, type_test, code_error):
         result = _build_dict_results_detail(id_test=card_test['id_test'], 
                                    card_test_name_english=card_test_lang.name_test_english,
                                    card_test_name_spanish=card_test_lang.name_test_spanish,
+                                   observations=card_test['observations'],
+                                   started_at=card_test['started_at'],
+                                   finished_at=card_test['finished_at'],
                                    items_card=items_card)
         results.append(result)
     
     return {
         "ticket_patient_tests": results_as_dict["ticket_patient_tests"],
         "type_test": type_test.value,
-        "observations": results_as_dict['observations'],
-        "started_at": results_as_dict['started_at'],
-        "finished_at": results_as_dict['finished_at'],
         "results" : results
     }
 
@@ -74,10 +74,13 @@ def _check_type_test(type_test, results_as_dict, code_error):
                                     debug_message=f"Please review field of request 'type_test' is {results_as_dict['type_test']}",
                                     status=status.HTTP_400_BAD_REQUEST)
 
-def _build_dict_results_detail(id_test = 0, card_test_name_spanish= "", card_test_name_english="",  items_card = []):
+def _build_dict_results_detail(id_test = 0, card_test_name_spanish= "", card_test_name_english="", observations="", started_at=None, finished_at=None, items_card = []):
     return {
         "id_test": str(id_test),
         "card_test_name_spanish": card_test_name_spanish,
         "card_test_name_english":  card_test_name_english,
+        "observations": observations,
+        "started_at": started_at,
+        "finished_at": finished_at,
         "items_card": items_card
     }

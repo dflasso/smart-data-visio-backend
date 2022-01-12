@@ -19,7 +19,10 @@ class ResultsDetail(models.Model):
     id_test = models.CharField(max_length=20, primary_key=True)
     card_test_name_spanish = models.CharField(max_length=100, blank=True)
     card_test_name_english = models.CharField(max_length=100, blank=True)
-    
+    observations = models.CharField(max_length=500, blank=True)
+    started_at = models.DateTimeField()
+    finished_at = models.DateTimeField()
+
     items_card = models.ArrayField(
         model_container= ItemsCardResult
     )
@@ -31,9 +34,7 @@ class LangIshiharaResult(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     ticket_patient_tests = models.CharField(max_length=20)
     type_test = models.CharField(max_length=10)
-    observations = models.CharField(max_length=500, blank=True)
-    started_at = models.DateTimeField()
-    finished_at = models.DateTimeField()
+    
 
     results = models.ArrayField(
         model_container= ResultsDetail

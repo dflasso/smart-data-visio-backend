@@ -128,3 +128,17 @@ dl.12345
 **paciente**
 user: paciente1
 pss: usertest12345
+
+
+# Deploy in Heroku
+- **Instalar plugin de python-heroku**: ```python -m pip install django-heroku```
+- **Crear lista dependencias**: ```python -m pip freeze > requirements.txt```
+- **Especificar la version de python**: ```python-3.9.9 > runtime.txt```
+- **Especificar el comando a ejecutar para levantar el proyecto**:  ```"web: python manage.py runserver 0.0.0.0:\$PORT" > Procfile```
+- **Agregar en el settings del proyecto**: 
+```
+import django_heroku
+django_heroku.settings(locals())
+```
+## Reference
+[Django_on_Heroku](https://realpython.com/django-hosting-on-heroku/)

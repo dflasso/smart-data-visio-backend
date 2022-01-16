@@ -2,16 +2,21 @@
 from djongo import models
 
 class ItemsCard(models.Model):
-    description = models.CharField(max_length=100)
-    weighing = models.DecimalField(max_digits=10, decimal_places=2)
+    item_id = models.CharField(max_length=50, primary_key=True)
+    description_english = models.CharField(max_length=100)
+    description_spanish = models.CharField(max_length=100)
+    weighing = models.FloatField()
 
     class Meta:
-        abstract = True
+        managed = False
 
 class LangIshiharaTest(models.Model):
-    name_test = models.CharField(max_length=100)
+    name_test_spanish = models.CharField(max_length=100)
+    name_test_english = models.CharField(max_length=100)
     type_test = models.CharField(max_length=10)
     items_card = models.ArrayField(
         model_container= ItemsCard
     )
+
+    objects = models.DjongoManager()
     

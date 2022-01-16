@@ -21,6 +21,6 @@ router.register(r'v1/visual-test/classic/ishihara/results', IshiharaResultsEndpo
 router.register(r'v1/visual-test/classic/titmus/animals', TitmusAnimalsEndpoint, basename='titmus-animals')
 router.register(r'v1/visual-test/classic/titmus/cirlces', TitmusCirclesEndpoint, basename='titmus-circles')
 
-router.register(r'v1/visual-test/classic/titmus/results', TitmusResultsEndpoints, basename='titmus-circles')
+router.register(r'v1/visual-test/classic/titmus/results', TitmusResultsEndpoints, basename='titmus-results')
 
 urlpatterns = router.urls

@@ -7,8 +7,6 @@ from rest_framework.decorators import action
 from classic_test.serializers import (TitmusCirclesUpdateResultsSerializer, TitmusAnimalsUpdateResultsSerializer, 
 TitmusHouseFlyResultsSerializer, TitmusResultsSerializer)
 
-# Models
-from classic_test.models import TitmusResults
 
 class TitmusResultsEndpoints(viewsets.ViewSet):
 
@@ -26,9 +24,17 @@ class TitmusResultsEndpoints(viewsets.ViewSet):
     
     @action(detail=False, methods=['put'])
     def add_animals_results(self, request):
-        return Response({"w": 2})
+        titmus_fly_results_serializer =  TitmusAnimalsUpdateResultsSerializer(data=request.data)
+        titmus_fly_results_serializer.is_valid(raise_exception=True)
+        titmus_model = titmus_fly_results_serializer.save()
+        titmus_model_serializer = TitmusResultsSerializer(titmus_model)
+        return Response(titmus_model_serializer.data, status=status.HTTP_201_CREATED)
 
     
     @action(detail=False, methods=['put'])
     def add_circles_results(self, request, pk=None):
-        return Response({"w": 3})
+        titmus_fly_results_serializer =  TitmusCirclesUpdateResultsSerializer(data=request.data)
+        titmus_fly_results_serializer.is_valid(raise_exception=True)
+        titmus_model = titmus_fly_results_serializer.save()
+        titmus_model_serializer = TitmusResultsSerializer(titmus_model)
+        return Response(titmus_model_serializer.data, status=status.HTTP_201_CREATED)

@@ -69,7 +69,7 @@ class TitmusResultsSerializer(serializers.Serializer):
 
     house_fly = TitmusHouseFlySerializer(required = False)
     animals_test = TitmusAnimalsSummarySerializer(required = False)
-    circles_test = TitmusCirclesResultSerializer(required = False)
+    circles_test = TitmusCirclesSummarySerializer(required = False)
 
 class TitmusHouseFlyResultsSerializer(serializers.Serializer):
     id = serializers.CharField( required = False)
@@ -79,7 +79,6 @@ class TitmusHouseFlyResultsSerializer(serializers.Serializer):
 
     def create(self, validated_data):
         data =  ConverterTitmusResultsRequest.from_req_update_fly_results(**validated_data)
-        print(type(data))
         return data
 
 class TitmusAnimalsUpdateResultsSerializer(serializers.Serializer):
@@ -88,8 +87,16 @@ class TitmusAnimalsUpdateResultsSerializer(serializers.Serializer):
 
     animals_test = TitmusAnimalsSummarySerializer()
 
+    def create(self, validated_data):
+        data =  ConverterTitmusResultsRequest.from_req_update_animals_results(**validated_data)
+        return data
+
 class TitmusCirclesUpdateResultsSerializer(serializers.Serializer):
     id = serializers.CharField( required = False)
     ticket_patient_tests = serializers.CharField(max_length=100)
 
-    circles_test = TitmusCirclesResultSerializer()
+    circles_test = TitmusCirclesSummarySerializer()
+
+    def create(self, validated_data):
+        data =  ConverterTitmusResultsRequest.from_req_update_circles_results(**validated_data)
+        return data

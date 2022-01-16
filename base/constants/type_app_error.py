@@ -18,6 +18,12 @@ class TypeAppError(Enum):
 
     """
     Codigo de errores: Modelo lang_ishihara
-    Range de errores: 0026 - 0027
+    Range de errores: 0026 - 0050
     """
     TEST_LANG_ISHIHARA_NOT_FOUND = "0026"
+
+    """
+    Codigo de errores: Modelo titmus
+    Range de errores: 0051 - 0075
+    """
+    TEST_TITMUS_RESULTS_NOT_FOUND = "0051"

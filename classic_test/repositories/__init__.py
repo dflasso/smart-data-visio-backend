@@ -1,2 +1,3 @@
 from .lang_ishihara_dao import LangIshiharaDao
 from .lang_ishihara_results_dao import LangIshiharaResultsDao
+from .titmys_results_dao import TitmusResultsDao

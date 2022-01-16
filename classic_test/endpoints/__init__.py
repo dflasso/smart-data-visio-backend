@@ -9,3 +9,4 @@ from .ishihara_results_enpoints import IshiharaResultsEndpoints
 # Titmus
 from .titmus_animals_endpoints import TitmusAnimalsEndpoint
 from .titmus_circles_endpoints import TitmusCirclesEndpoint
+from .titmus_results_endpoints import TitmusResultsEndpoints

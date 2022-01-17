@@ -21,4 +21,5 @@ urlpatterns = [
     path('', include( ('Security.urls', 'security'), namespace='security' )),
     path('', include( ('patients.urls', 'patients'), namespace='patients' )),
     path('', include( ('classic_test.urls', 'classic_test'), namespace='classic_test' )),
+    path('', include( ('ophthalmological_test.urls', 'ophthalmological_test'), namespace='ophthalmological_test' )),
 ]

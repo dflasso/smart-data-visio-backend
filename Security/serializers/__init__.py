@@ -1,3 +1,4 @@
 from .resource_serializer import ResourceSerializer
 from .auth_serializer import LoginSerializer
 from .profile_serializer import ProfileSerializer
+from .users_serializer import UserSerializer

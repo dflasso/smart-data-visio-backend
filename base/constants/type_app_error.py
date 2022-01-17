@@ -27,3 +27,15 @@ class TypeAppError(Enum):
     Range de errores: 0051 - 0075
     """
     TEST_TITMUS_RESULTS_NOT_FOUND = "0051"
+
+    """
+    Codigo de errores: Modelo Ophthalmological Test
+    Range de errores: 0076 - 0100
+    """
+    TESTS_OPHTHALMOLOGICAL_NOT_FOUND = "0076"
+
+    """
+    Codigo de errores: Modelo User
+    Range de errores: 0101 - 0125
+    """
+    USERS_NOT_FOUND = "0101"

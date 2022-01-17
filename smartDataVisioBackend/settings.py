@@ -49,7 +49,8 @@ INSTALLED_APPS = [
     'Security.apps.SecurityConfig',
     'patients.apps.PatientsConfig',
     'virtual_task.apps.VirtualTaskConfig',
-    'classic_test.apps.ClassicTestConfig'
+    'classic_test.apps.ClassicTestConfig',
+    'ophthalmological_test.apps.OphthalmologicalTestConfig'
 ]
 
 CORS_ORIGIN_ALLOW_ALL = True

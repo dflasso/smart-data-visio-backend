@@ -2,7 +2,7 @@
 from djongo import models
 
 class ResourcesProfile(models.Model):
-    id_resource_parent = models.CharField(max_length=100, blank=True)
+    id_resource_parent = models.CharField(max_length=100, blank=True, primary_key=True)
     id_resource = models.CharField(max_length=100)
     page_name = models.CharField(max_length=100)
     tab_name = models.CharField(max_length=100)
@@ -13,7 +13,7 @@ class ResourcesProfile(models.Model):
     can_read = models.BooleanField(default=True)
 
     class Meta:
-        abstract = True
+        managed = False
 
 
 

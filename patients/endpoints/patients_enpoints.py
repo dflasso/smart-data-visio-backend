@@ -5,6 +5,7 @@ from rest_framework import status
 
 # Serializer
 from patients.serializers.patient_serializer import PatientSerializer
+from Security.serializers import UserSerializer
 
 # Models
 from Security.models.user import User
@@ -43,7 +44,8 @@ class PatientsApis(APIView):
         patient_dict['id_profile'] = str(profile_patients.id)
         patient_dict['password'] = 'usertest12345'
 
-        User.objects.create(**patient_dict)
-
-        return Response(patient_serializer.data, status = status.HTTP_201_CREATED)
+        user_data = User.objects.create(**patient_dict)
+        user_data_serializer = UserSerializer(user_data)
+        
+        return Response(user_data_serializer.data, status = status.HTTP_201_CREATED)
         

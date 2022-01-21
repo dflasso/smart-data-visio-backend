@@ -11,7 +11,7 @@ class ResultsDetailSerializer(serializers.Serializer):
     id_test = serializers.IntegerField(min_value=0)
     card_test_name_spanish = serializers.CharField(max_length=100, required = False)
     card_test_name_english = serializers.CharField(max_length=100, required = False)
-    observations = serializers.CharField(max_length=500,  required = False)
+    observations = serializers.CharField(max_length=500,  required = False, allow_blank= True)
     started_at = serializers.DateTimeField()
     finished_at = serializers.DateTimeField()
 

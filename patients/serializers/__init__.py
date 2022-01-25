@@ -1,1 +1,2 @@
-from .patient_serializer import PatientSerializer
+from .patient_serializer import PatientSerializer, PatientUpdateSerializer
+from .medical_history_serializer import MedicalHistorySerializer, DiseasesSerializer, EyeglassesPatientSerializer

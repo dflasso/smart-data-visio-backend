@@ -41,7 +41,9 @@ class PatientSerializer(serializers.Serializer):
 
     phone = serializers.CharField(
         max_length=20, 
-        min_length=9,
+        min_length=0,
+        allow_null=True,
+        allow_blank=True,
         required=False )
 
     profesion = serializers.CharField(
@@ -94,6 +96,9 @@ class PatientUpdateSerializer(serializers.Serializer):
 
     phone = serializers.CharField(
         max_length=20,
+        min_length=0,
+        allow_null=True,
+        allow_blank=True,
         required=False )
 
     profesion = serializers.CharField(

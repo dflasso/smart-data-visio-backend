@@ -48,18 +48,30 @@ class PatientSerializer(serializers.Serializer):
 
     profesion = serializers.CharField(
         max_length=100,
+        min_length=0,
+        allow_null=True,
+        allow_blank=True,
         required=False )
 
     force = serializers.CharField(
         max_length=100,
+        min_length=0,
+        allow_null=True,
+        allow_blank=True,
         required=False )
 
     army = serializers.CharField(
         max_length=100,
+        min_length=0,
+        allow_null=True,
+        allow_blank=True,
         required=False )
 
     grade = serializers.CharField(
         max_length=100,
+        min_length=0,
+        allow_null=True,
+        allow_blank=True,
         required=False )
     
     birthday = serializers.CharField(required=False )
@@ -103,18 +115,30 @@ class PatientUpdateSerializer(serializers.Serializer):
 
     profesion = serializers.CharField(
         max_length=100,
+        min_length=0,
+        allow_null=True,
+        allow_blank=True,
         required=False )
 
     force = serializers.CharField(
         max_length=100,
+        min_length=0,
+        allow_null=True,
+        allow_blank=True,
         required=False )
 
     army = serializers.CharField(
         max_length=100,
+        min_length=0,
+        allow_null=True,
+        allow_blank=True,
         required=False )
 
     grade = serializers.CharField(
         max_length=100,
+        min_length=0,
+        allow_null=True,
+        allow_blank=True,
         required=False )
     
     birthday = serializers.CharField(required=False )

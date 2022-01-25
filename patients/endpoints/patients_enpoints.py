@@ -27,7 +27,7 @@ class PatientsApis(viewsets.ViewSet):
 
         users = User.objects.all().filter(id_profile=str(profile_patients.id))
 
-        patients_serializer = PatientSerializer(users, many=True)
+        patients_serializer = UserSerializer(users, many=True)
         return Response(patients_serializer.data)
 
     def create(self, request):

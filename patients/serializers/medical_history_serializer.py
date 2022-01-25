@@ -7,7 +7,7 @@ from patients.repositories import MedicalHistoryDao
 
 class DiseasesSerializer(serializers.Serializer):
     id_diseases = serializers.CharField(max_length=50)
-    name = serializers.CharField(max_length=100)
+    name = serializers.CharField(max_length=100, allow_blank=True)
     indications = serializers.CharField(max_length=300, allow_blank=True )
     observations = serializers.CharField(max_length=300, allow_blank=True )
 

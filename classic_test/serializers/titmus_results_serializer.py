@@ -20,7 +20,7 @@ class TitmusCirclesResultSerializer(serializers.Serializer):
 
 class TitmusCirclesSummarySerializer(serializers.Serializer):
     id_test = serializers.CharField(max_length=20)
-    observations = serializers.CharField(max_length=500,required = False)
+    observations = serializers.CharField(max_length=500,required = False, allow_blank= True)
     started_at = serializers.DateTimeField()
     finished_at = serializers.DateTimeField()
 
@@ -44,7 +44,7 @@ class TitmusAnimalsResultSerializer(serializers.Serializer):
 
 class TitmusAnimalsSummarySerializer(serializers.Serializer):
     id_test = serializers.CharField(max_length=100)
-    observations = serializers.CharField(max_length=500, required = False)
+    observations = serializers.CharField(max_length=500, required = False, allow_blank= True)
     started_at = serializers.DateTimeField()
     finished_at = serializers.DateTimeField()
     results = TitmusAnimalsResultSerializer(many=True)
@@ -55,7 +55,7 @@ class TitmusAnimalsSummarySerializer(serializers.Serializer):
 class TitmusHouseFlySerializer(serializers.Serializer):
     id_test = serializers.CharField(max_length=100)
     view_fly = serializers.BooleanField()
-    observations = serializers.CharField(max_length=500, required = False)
+    observations = serializers.CharField(max_length=500, required = False, allow_blank= True)
     started_at = serializers.DateTimeField()
     finished_at = serializers.DateTimeField()
 

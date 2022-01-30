@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
+import os
 from pathlib import Path
 from datetime import timedelta
 import django_heroku
@@ -50,7 +51,9 @@ INSTALLED_APPS = [
     'patients.apps.PatientsConfig',
     'virtual_task.apps.VirtualTaskConfig',
     'classic_test.apps.ClassicTestConfig',
-    'ophthalmological_test.apps.OphthalmologicalTestConfig'
+    'ophthalmological_test.apps.OphthalmologicalTestConfig',
+    'legal_documents.apps.LegalDocumentsConfig',
+    'reports.apps.ReportsConfig'
 ]
 
 CORS_ORIGIN_ALLOW_ALL = True
@@ -149,3 +152,7 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 django_heroku.settings(locals(), databases=False)
+
+# handle files
+MEDIA_ROOT = os.path.join(BASE_DIR, "repository", "media")
+MEDIA_URL = "/media/"

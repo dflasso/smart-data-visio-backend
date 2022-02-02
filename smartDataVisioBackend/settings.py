@@ -153,6 +153,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 django_heroku.settings(locals(), databases=False)
 
+
 # handle files
+STATIC_ROOT = os.path.join(BASE_DIR, "repository", "staticfiles")
+STATIC_URL = "/assests/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "repository", "media")
 MEDIA_URL = "/media/"

@@ -39,3 +39,10 @@ class TypeAppError(Enum):
     Range de errores: 0101 - 0125
     """
     USERS_NOT_FOUND = "0101"
+
+    """
+    Codigo de errores en el proceso de registro de resultado de 
+    cuestionarios
+    Range de errores: 0126 - 0150
+    """
+    PARAMS_REQUIRED_NULL = "0126"

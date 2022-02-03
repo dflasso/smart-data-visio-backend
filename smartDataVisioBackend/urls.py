@@ -27,6 +27,8 @@ urlpatterns = [
     path('', include( ('ophthalmological_test.urls', 'ophthalmological_test'), namespace='ophthalmological_test' )),
     path('', include( ('legal_documents.urls', 'legal_documents'), namespace='legal_documents' )),
     path('', include( ('reports.urls', 'reports'), namespace='reports' )),
+    path('', include( ('questionnaires.urls', 'questionnaires'), namespace='questionnaires' )),
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 

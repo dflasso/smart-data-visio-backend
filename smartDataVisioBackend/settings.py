@@ -53,7 +53,8 @@ INSTALLED_APPS = [
     'classic_test.apps.ClassicTestConfig',
     'ophthalmological_test.apps.OphthalmologicalTestConfig',
     'legal_documents.apps.LegalDocumentsConfig',
-    'reports.apps.ReportsConfig'
+    'reports.apps.ReportsConfig',
+    'questionnaires.apps.QuestionnairesConfig',
 ]
 
 CORS_ORIGIN_ALLOW_ALL = True

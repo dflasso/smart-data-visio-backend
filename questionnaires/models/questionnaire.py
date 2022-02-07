@@ -3,7 +3,7 @@ import uuid
 
 class QuestionModel(models.Model):
     id_question = models.CharField(max_length=50, primary_key=True)
-    statement = models.CharField(max_length=100)
+    statement = models.CharField(max_length=300)
     answerLabel = models.CharField(max_length=100)
     answerValue = models.FloatField()
     answerMinValue = models.FloatField()

@@ -6,7 +6,7 @@ from  questionnaires.models import QuestionnaireModel
 
 class QuestionSerializer(serializers.Serializer):
     id_question = serializers.CharField(max_length=50)
-    statement = serializers.CharField(max_length=100)
+    statement = serializers.CharField(max_length=300)
     answerLabel = serializers.CharField(max_length=100)
     answerValue = serializers.FloatField()
     answerMinValue = serializers.FloatField()

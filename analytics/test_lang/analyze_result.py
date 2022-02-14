@@ -26,7 +26,17 @@ def analyze_answer(correct_answer, patient_answer ):
                                    is_answer_correct=is_answer_correct, 
                                    incorrect_answers=incorrect_answers)
 
+"""
+1era Regla
+Calcular el porcentaje de aciertos prueba de lang
+"""
+def calculate_porcentaje_hits(total_answers = 1, success_answers = 1  ):
+    if total_answers <=  0 or success_answers <= 0:
+        pass
 
+    porcentaje_hits = success_answers * 100 / total_answers
+
+    return porcentaje_hits
 
 def _debugged_answer(str_answer):
     answer_debugged = str(str_answer)

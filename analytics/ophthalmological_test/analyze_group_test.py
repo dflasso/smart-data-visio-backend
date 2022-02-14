@@ -3,7 +3,7 @@ from base.exceptions import BusinessRuleException
 
 """
 
-Parametros: 
+Parametros:
 
 La funcion recive un arreglo de objetos
 {
@@ -18,6 +18,8 @@ Validaciones:
 - La función valida que la sumatoria de los pesos de las pruebas sean igual a 100%
 
 """
+
+
 def calculate_total_procentaje_hits(test_results=[]):
     total_test_weighting = 0
     total_porcentaje_tests = 0
@@ -30,21 +32,22 @@ def calculate_total_procentaje_hits(test_results=[]):
             raise BusinessRuleException(message_english="weightings don't should be greater than one hundred.",
                                         message_spanish="Los pesos no deben ser mayores que cien.")
 
-        porcentaje_global_test = one_test_result['porcentaje_success_answers'] * 100 / one_test_result['test_weighting']
+        porcentaje_global_test = one_test_result['porcentaje_success_answers'] * \
+            100 / one_test_result['test_weighting']
         total_porcentaje_tests += porcentaje_global_test
 
     # Validación que los pesos sumen  100
     if total_test_weighting != 100:
         raise BusinessRuleException(message_english="weightings don't should be less than one hundred.",
                                     message_spanish="Los pesos no deben ser mayores que cien.")
-    
+
     return total_porcentaje_tests
 
 
 """
 Parametros
 - 'total_porcentaje_tests' :  porcentaje total aciertos del grupo de pruebas visuales (del 0 al 100)
-- 'total_porcentaje_tests' : listado de diccionarios con los siguientes atributos
+- 'rules_groups_test' : listado de diccionarios con los siguientes atributos
 {
     "suggestion": "", # Mensaje de la sugerencia o recomendación
     "min_porcentaje": 0.0, # Valor mínimo del porcentaje para dar recomendación o sugerencia
@@ -52,10 +55,45 @@ Parametros
 }
 
 """
-def find_range_for_suggestion(total_porcentaje_tests = 0, rules_groups_test = []):
+
+
+def find_range_for_suggestion(total_porcentaje_tests=0, rules_groups_test=[]):
     msg_suggestion = ""
     for rule in rules_groups_test:
         if total_porcentaje_tests >= rule['min_porcentaje'] and total_porcentaje_tests <= rule['max_porcentaje']:
             msg_suggestion = rule['msg_suggestion']
-    
+
+    return msg_suggestion
+
+
+"""
+Evaluar y relacionar resultados entre pruebas
+
+La función determina si el rango de dos pruebas (una clásica y una virtual)
+y detecta una posible deficiencia visual
+
+Parametros
+- 'porcentaje_test_tradicional' :  porcentaje total aciertos de la prueba tradicional
+- 'porcentaje_test_virtual' :  porcentaje total aciertos de la prueba virtual
+- 'rules_groups_test' : listado de diccionarios con los siguientes atributos
+{
+    "suggestion": "", # Mensaje de la sugerencia o recomendación
+    # Valor mínimo del porcentaje para dar recomendación o sugerencia
+    "min_porcentaje_test_tradicional": 0.0,
+    # Valor máximo del porcentaje para dar recomendación o sugerencia
+    "max_porcentaje_test_tradicional": 0.0,
+    # Valor mínimo del porcentaje para dar recomendación o sugerencia
+    "min_porcentaje_test_virtual": 0.0
+    # Valor máximo del porcentaje para dar recomendación o sugerencia
+    "max_porcentaje_test_virtual": 0.0
+}
+
+"""
+def check_specific_visual_deficiency(porcentaje_test_tradicional=0, porcentaje_test_virtual=0, rules_groups_test=[]):
+    msg_suggestion = ""
+    for rule in rules_groups_test:
+        if ((porcentaje_test_tradicional >= rule['min_porcentaje_test_tradicional'] and porcentaje_test_tradicional <= rule['max_porcentaje_test_tradicional']) and
+            (porcentaje_test_virtual >= rule['min_porcentaje_test_virtual'] and porcentaje_test_virtual <= rule['max_porcentaje_test_virtual'])):
+            msg_suggestion = rule['msg_suggestion']
+
     return msg_suggestion

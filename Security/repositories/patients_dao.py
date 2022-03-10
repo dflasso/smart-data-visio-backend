@@ -1,5 +1,6 @@
 # Model
 from Security.models import User
+from django.db.models import Q
 
 # Exceptions
 from base.exceptions import NotFoundException, ModelOperationException
@@ -46,6 +47,34 @@ class PatientsDao():
     def find_by_num_document(num_document = ""):
         try:
              return User.objects.get(doc_identification=num_document)
+        except ObjectDoesNotExist as e:
+            log_error(action="PatientsDao.find_by_num_document",
+                      message=f"Paciente no encontrado",
+                      details_error={"trace": e})
+            raise NotFoundException(message_english=f'Patients not found',
+                                    message_spanish=f'Paciente no encontrado',
+                                    code=TypeAppError.USERS_NOT_FOUND.value)
+        except:
+            details_error = {
+                "type": sys.exc_info()[0],
+                "value": sys.exc_info()[1],
+                "treceback": sys.exc_info()[2]
+            }
+
+            log_error(action="PatientsDao.find_by_num_document",
+                      message=f"Unexpedted Error in find Patient'",
+                      details_error=details_error)
+            raise ModelOperationException(message_english=f'Data access failed',
+                                          message_spanish=f'Fallo al acceder a los datos.')
+
+    @staticmethod 
+    def find_match_in_many_fields(field = "", limit = 5, offset = 1):
+        try:
+            return  User.objects.filter(
+                Q(email__contains=field) | Q(doc_identification__contains=field) |
+                Q(phone__contains=field) | Q(first_name__contains=field) |
+                Q(last_name__contains=field) & Q(id_profile="3")
+            )[ offset: limit ]
         except ObjectDoesNotExist as e:
             log_error(action="PatientsDao.find_by_num_document",
                       message=f"Paciente no encontrado",

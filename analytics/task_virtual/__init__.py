@@ -1,0 +1,1 @@
+from .analyze_result import calculate_porcentaje_hits, virtual_task_calculate_porcentaje_all_test

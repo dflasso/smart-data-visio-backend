@@ -1,1 +1,2 @@
 from .type_app_error import TypeAppError
+from .rules import rules_ophthalmological_all_test, rules_ophthalmological_mixin_test, MixinRules

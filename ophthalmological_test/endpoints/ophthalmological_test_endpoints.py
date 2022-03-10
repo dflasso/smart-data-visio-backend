@@ -1,6 +1,7 @@
 # Django Rest Framework
 from rest_framework import viewsets, status
 from rest_framework.response import Response
+from rest_framework.decorators import action
 
 # Serializer
 from ophthalmological_test.serializers import OphthalmologicalTestSerializer
@@ -25,3 +26,9 @@ class OphthalmologicalTestEndpoints(viewsets.ViewSet):
         ophthalmological_model = ophthalmological_test_serializer.save()
         ophthalmological_model_serializer =  OphthalmologicalTestSerializer(ophthalmological_model)
         return Response(ophthalmological_model_serializer.data, status=status.HTTP_201_CREATED)
+
+    @action(detail=True, methods=['get'])
+    def find_groups_by_id_patient(self, request, pk=None):
+        list_groups_test = OphthalmologicalTestDao.find_groups_test_by_patient_id(patient_id=pk)
+        list_groups_test_serializer = OphthalmologicalTestSerializer(list_groups_test, many=True)
+        return Response(list_groups_test_serializer.data)

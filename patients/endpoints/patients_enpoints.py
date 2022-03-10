@@ -2,6 +2,7 @@
 from rest_framework.response import Response
 from rest_framework.decorators import action
 from rest_framework import status, viewsets
+from rest_framework.pagination import PageNumberPagination
 
 # Serializer
 from patients.serializers import PatientSerializer, PatientUpdateSerializer
@@ -14,7 +15,6 @@ from Security.models.profile import Profile
 # DAOs
 from Security.repositories import PatientsDao
 from patients.repositories import MedicalHistoryDao
-
 
 class PatientsApis(viewsets.ViewSet):
 
@@ -66,6 +66,13 @@ class PatientsApis(viewsets.ViewSet):
     def find_by_num_document(self, request,  pk=""):
         patient = PatientsDao.find_by_num_document(num_document=pk)
         patient_serializer = UserSerializer(patient)
+        return Response(patient_serializer.data)
+
+    @action(detail=True, methods=['get'])
+    def find_by_match_by_param(self, request,  pk=""):
+        query_params = request.query_params.dict()
+        patients = PatientsDao.find_match_in_many_fields(field=pk, limit=int(query_params['limit']), offset=int(query_params['offset']) )
+        patient_serializer = UserSerializer(patients, many=True)
         return Response(patient_serializer.data)
 
     def update(self, request, pk=None):

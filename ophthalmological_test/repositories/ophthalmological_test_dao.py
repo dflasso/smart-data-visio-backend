@@ -79,3 +79,20 @@ class OphthalmologicalTestDao():
                       details_error=details_error)
             raise ModelOperationException(message_english=f'Data access failed',
                                           message_spanish=f'Fallo al acceder a los datos.')
+
+    @staticmethod 
+    def find_groups_test_by_patient_id(patient_id= ""):
+        try:
+            return OphthalmologicalTest.objects.filter(patient_id=patient_id)
+        except:
+            details_error = {
+                "type": sys.exc_info()[0],
+                "value": sys.exc_info()[1],
+                "treceback": sys.exc_info()[2]
+            }
+
+            log_error(action="OphthalmologicalTestDao.create",
+                      message=f"Unexpedted Error in create results titmus ",
+                      details_error=details_error)
+            raise ModelOperationException(message_english=f'Data access failed',
+                                          message_spanish=f'Fallo al acceder a los datos.')

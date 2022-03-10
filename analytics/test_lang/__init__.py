@@ -1,1 +1,1 @@
-from .analyze_result import analyze_answer, analyze_many_answers
+from .analyze_result import analyze_answer, analyze_many_answers, clasic_test_calculate_porcentaje_all_test

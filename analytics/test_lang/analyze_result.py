@@ -62,3 +62,21 @@ def _build_dict_card_result(corrects_answers, is_answer_correct, incorrect_answe
         "incorrect_answers": incorrect_answers,
         "value_result_answer": value_result_answer
     }
+
+
+
+def clasic_test_calculate_porcentaje_all_test(clasic_test_data, weighting = 0):
+    
+    total_hits = 0
+    total_misses = 0
+    for cards in clasic_test_data.results:
+        for answers in cards['items_card']:
+            if answers['answer_correct']:
+                total_hits += 1
+            else :
+                total_misses += 1
+    
+    porcentaje_hits = calculate_porcentaje_hits(total_answers=(total_hits+total_misses), success_answers=total_hits)
+    
+    return { "total_hits": total_hits, "total_misses" : total_misses, "porcentaje_hits": porcentaje_hits, "test_weighting": weighting }
+

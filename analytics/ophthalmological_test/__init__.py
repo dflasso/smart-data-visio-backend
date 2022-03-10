@@ -1,0 +1,1 @@
+from .analyze_group_test import calculate_total_procentaje_hits, find_range_for_suggestion_global_total, analytic_mixin_test

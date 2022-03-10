@@ -28,6 +28,8 @@ urlpatterns = [
     path('', include( ('legal_documents.urls', 'legal_documents'), namespace='legal_documents' )),
     path('', include( ('reports.urls', 'reports'), namespace='reports' )),
     path('', include( ('questionnaires.urls', 'questionnaires'), namespace='questionnaires' )),
+    path('', include( ('virtual_task.urls', 'virtual_task'), namespace='virtual_task' )),
+    path('', include( ('analytics.urls', 'analytics'), namespace='analytics' )),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

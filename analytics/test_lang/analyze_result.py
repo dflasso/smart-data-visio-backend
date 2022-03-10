@@ -1,3 +1,6 @@
+# Exceptions
+from base.exceptions import BusinessRuleException
+
 def analyze_many_answers(corrects_answers, patient_answers ):
     items_card_results = []
     for correct_answer in corrects_answers:
@@ -26,7 +29,17 @@ def analyze_answer(correct_answer, patient_answer ):
                                    is_answer_correct=is_answer_correct, 
                                    incorrect_answers=incorrect_answers)
 
+"""
+1era Regla
+Calcular el porcentaje de aciertos prueba de lang
+"""
+def calculate_porcentaje_hits(total_answers = 1, success_answers = 1  ):
+    if total_answers <=  0 or success_answers <= 0:
+        raise BusinessRuleException(message_english="Values should be greater than zero.", message_spanish="Los valores deben ser mayores que cero.")
 
+    porcentaje_hits = success_answers * 100 / total_answers
+
+    return porcentaje_hits
 
 def _debugged_answer(str_answer):
     answer_debugged = str(str_answer)
@@ -49,3 +62,21 @@ def _build_dict_card_result(corrects_answers, is_answer_correct, incorrect_answe
         "incorrect_answers": incorrect_answers,
         "value_result_answer": value_result_answer
     }
+
+
+
+def clasic_test_calculate_porcentaje_all_test(clasic_test_data, weighting = 0):
+    
+    total_hits = 0
+    total_misses = 0
+    for cards in clasic_test_data.results:
+        for answers in cards['items_card']:
+            if answers['answer_correct']:
+                total_hits += 1
+            else :
+                total_misses += 1
+    
+    porcentaje_hits = calculate_porcentaje_hits(total_answers=(total_hits+total_misses), success_answers=total_hits)
+    
+    return { "total_hits": total_hits, "total_misses" : total_misses, "porcentaje_hits": porcentaje_hits, "test_weighting": weighting }
+
